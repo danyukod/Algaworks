@@ -3,7 +3,9 @@ package com.algaworks.cobranca.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import com.algaworks.cobranca.service.CadastroTituloService;
 import org.apache.tomcat.jni.Error;
+import org.dom4j.IllegalAddException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class TituloController {
 	@Autowired
 	private Titulos titulos;
 
+	@Autowired
+	private CadastroTituloService service;
+
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
@@ -42,11 +47,11 @@ public class TituloController {
 			return CADASTRO_VIEW;
 		}
 		try {
-			titulos.save(titulo);
+			service.salvar(titulo);
 			attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
 			return "redirect:/titulos/novo";
-		} catch(DataIntegrityViolationException e) {
-			errors.rejectValue("dataVencimento", null, "Formato de data inválido!");
+		} catch(IllegalAddException e) {
+			errors.rejectValue("dataVencimento", null, e.getMessage());
 			return CADASTRO_VIEW;
 		}
 	}
@@ -68,7 +73,7 @@ public class TituloController {
 	
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
-		titulos.delete(codigo);
+		service.excluir(codigo);
 		
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
 		return "redirect:/titulos";
