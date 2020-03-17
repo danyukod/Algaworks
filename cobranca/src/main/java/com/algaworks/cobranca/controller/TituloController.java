@@ -3,6 +3,7 @@ package com.algaworks.cobranca.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import com.algaworks.cobranca.repository.filter.TituloFilter;
 import com.algaworks.cobranca.service.CadastroTituloService;
 import org.apache.tomcat.jni.Error;
 import org.dom4j.IllegalAddException;
@@ -24,9 +25,6 @@ import com.algaworks.cobranca.repository.Titulos;
 public class TituloController {
 	
 	private static final String CADASTRO_VIEW = "CadastroTitulo";
-	
-	@Autowired
-	private Titulos titulos;
 
 	@Autowired
 	private CadastroTituloService service;
@@ -54,10 +52,10 @@ public class TituloController {
 	}
 	
 	@RequestMapping
-	public ModelAndView pesquisar() {
-		List<Titulo> todosTitulos = titulos.findAll();
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro) {
+
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
-		mv.addObject("titulos", todosTitulos);
+		mv.addObject("titulos", service.filtrar(filtro));
 		return mv;
 	}
 	
