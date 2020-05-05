@@ -3,12 +3,16 @@ package com.algaworks.socialbooks.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Livro {
 
     @JsonInclude(Include.NON_NULL)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -23,6 +27,7 @@ public class Livro {
     private String resumo;
 
     @JsonInclude(Include.NON_NULL)
+    @Transient
     private List<Comentario> comentarios;
 
     @JsonInclude(Include.NON_NULL)
