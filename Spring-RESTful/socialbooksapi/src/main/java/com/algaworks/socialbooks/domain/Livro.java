@@ -27,8 +27,8 @@ public class Livro {
     private String resumo;
 
     @JsonInclude(Include.NON_NULL)
-    @Transient
-    private List<Comentario> comentarios;
+    @OneToMany(mappedBy = "livro")
+    private List<Comentario> comentario;
 
     @JsonInclude(Include.NON_NULL)
     private String autor;
@@ -80,12 +80,12 @@ public class Livro {
         this.resumo = resumo;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
+    public List<Comentario> getComentario() {
+        return comentario;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
+    public void setComentario(List<Comentario> comentario) {
+        this.comentario = comentario;
     }
 
     public String getAutor() {

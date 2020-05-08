@@ -1,16 +1,30 @@
 package com.algaworks.socialbooks.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Comentario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String text;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String usuario;
 
     private Date data;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LIVRO_ID")
+    @JsonIgnore
+    private Livro livro;
 
     public Long getId() {
         return id;
@@ -42,5 +56,12 @@ public class Comentario {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 }
