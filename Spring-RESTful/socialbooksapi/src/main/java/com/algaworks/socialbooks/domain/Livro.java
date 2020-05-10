@@ -31,7 +31,9 @@ public class Livro {
     private List<Comentario> comentario;
 
     @JsonInclude(Include.NON_NULL)
-    private String autor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AUTOR_ID")
+    private Autor autor;
 
     public Livro() {
     }
@@ -88,11 +90,11 @@ public class Livro {
         this.comentario = comentario;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 }
