@@ -4,6 +4,8 @@ import com.algaworks.socialbooks.domain.Comentario;
 import com.algaworks.socialbooks.domain.Livro;
 import com.algaworks.socialbooks.repository.ComentariosRepository;
 import com.algaworks.socialbooks.repository.LivrosRepository;
+import com.algaworks.socialbooks.services.exceptions.AutorExistenteException;
+import com.algaworks.socialbooks.services.exceptions.LivroExistenteException;
 import com.algaworks.socialbooks.services.exceptions.LivroNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -35,7 +37,11 @@ public class LivrosService {
     }
 
     public Livro salvar(Livro livro) {
-        livro.setId(null);
+        if(livro.getId() != null){
+            if(livrosRepository.findById(livro.getId()).isPresent()){
+                throw new LivroExistenteException("O livro já existe");
+            }
+        }
         return livrosRepository.save(livro);
     }
 
@@ -65,6 +71,6 @@ public class LivrosService {
 
     public List<Comentario> listarComentarios(Long livroId) {
         Livro livro = buscar(livroId);
-        return livro.getComentario();
+        return livro.getComentarios();
     }
 }

@@ -1,6 +1,7 @@
 package com.algaworks.socialbooks.resources;
 
 import com.algaworks.socialbooks.domain.Autor;
+import com.algaworks.socialbooks.domain.Livro;
 import com.algaworks.socialbooks.services.AutoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,13 @@ public class AutoresResource {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public ResponseEntity<Autor> buscar(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(autoresService.buscar(id));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> atualizar(@RequestBody Autor autor, @PathVariable Long id) {
+        autor.setId(id);
+        autoresService.atualizar(autor);
+        return ResponseEntity.noContent().build();
     }
 
 }

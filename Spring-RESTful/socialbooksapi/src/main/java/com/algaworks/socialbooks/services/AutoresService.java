@@ -1,6 +1,7 @@
 package com.algaworks.socialbooks.services;
 
 import com.algaworks.socialbooks.domain.Autor;
+import com.algaworks.socialbooks.domain.Livro;
 import com.algaworks.socialbooks.repository.AutoresRepository;
 import com.algaworks.socialbooks.services.exceptions.AutorExistenteException;
 import com.algaworks.socialbooks.services.exceptions.AutorNaoEncontradoException;
@@ -35,4 +36,12 @@ public class AutoresService {
         return autoresRepository.findById(id).get();
     }
 
+    public void atualizar(Autor autor) {
+        verificarExistencia(autor);
+        autoresRepository.save(autor);
+    }
+
+    public void verificarExistencia(Autor autor) {
+        buscar(autor.getId());
+    }
 }

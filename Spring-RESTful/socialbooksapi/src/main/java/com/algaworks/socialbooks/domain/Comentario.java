@@ -1,5 +1,6 @@
 package com.algaworks.socialbooks.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -13,12 +14,13 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String text;
+    private String texto;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String usuario;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date data;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,12 +36,12 @@ public class Comentario {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     public String getUsuario() {

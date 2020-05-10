@@ -1,5 +1,6 @@
 package com.algaworks.socialbooks.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -10,7 +11,6 @@ import java.util.List;
 @Entity
 public class Livro {
 
-    @JsonInclude(Include.NON_NULL)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +18,7 @@ public class Livro {
     private String nome;
 
     @JsonInclude(Include.NON_NULL)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date publicacao;
 
     @JsonInclude(Include.NON_NULL)
@@ -26,12 +27,12 @@ public class Livro {
     @JsonInclude(Include.NON_NULL)
     private String resumo;
 
-    @JsonInclude(Include.NON_NULL)
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(mappedBy = "livro")
-    private List<Comentario> comentario;
+    private List<Comentario> comentarios;
 
     @JsonInclude(Include.NON_NULL)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "AUTOR_ID")
     private Autor autor;
 
@@ -82,12 +83,12 @@ public class Livro {
         this.resumo = resumo;
     }
 
-    public List<Comentario> getComentario() {
-        return comentario;
+    public List<Comentario> getComentarios() {
+        return comentarios;
     }
 
-    public void setComentario(List<Comentario> comentario) {
-        this.comentario = comentario;
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Autor getAutor() {
