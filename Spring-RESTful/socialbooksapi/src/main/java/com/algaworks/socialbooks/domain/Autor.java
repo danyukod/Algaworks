@@ -15,10 +15,13 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String nome;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Date nascimento;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String nacionalidade;
 
     @OneToMany(mappedBy = "autor")
