@@ -8,6 +8,8 @@ import com.algaworks.socialbooks.services.exceptions.LivroNaoEncontradoException
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -78,5 +80,16 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<DetalhesErro> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, HttpServletRequest request) {
+
+        DetalhesErro erro = new DetalhesErro();
+        erro.setStatus(400L);
+        erro.setTitulo("Requisição inválida");
+        erro.setMensagemDesenvolvedor("http://erros.socialbooks.com/400");
+        erro.setTimestamp(System.currentTimeMillis());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+    }
 
 }

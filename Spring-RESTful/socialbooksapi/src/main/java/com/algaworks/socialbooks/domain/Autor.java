@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -16,13 +18,16 @@ public class Autor {
     private Long id;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotEmpty(message = "O campo nome não pode ser vazio.")
     private String nome;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @NotNull(message = "Campo nascimento é de preenchimento obrigatório")
     private Date nascimento;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotNull(message = "Campo nacionalidade é de preenchimento obrigatório")
     private String nacionalidade;
 
     @OneToMany(mappedBy = "autor")
