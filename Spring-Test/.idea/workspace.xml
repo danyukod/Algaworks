@@ -4,22 +4,6 @@
     <list default="true" id="29746e7a-6242-4015-9366-9327a61ed829" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Spring-RESTful/socialbooksapi/src/main/java/com/algaworks/socialbooks/resources/LivrosResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-RESTful/socialbooksapi/src/main/java/com/algaworks/socialbooks/resources/LivrosResources.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Spring-RESTful/socialbooksapi/src/main/java/com/algaworks/socialbooks/services/LivrosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-RESTful/socialbooksapi/src/main/java/com/algaworks/socialbooks/services/LivrosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Spring-Test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/src/main/java/br/com/algaworks/filmes/FilmesApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmes/src/test/java/br/com/algaworks/filmes/FilmesApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +46,7 @@
       <updated>1589042771700</updated>
       <workItem from="1589042772976" duration="1056000" />
       <workItem from="1589046078393" duration="17000" />
+      <workItem from="1589053440403" duration="88000" />
     </task>
     <servers />
   </component>
