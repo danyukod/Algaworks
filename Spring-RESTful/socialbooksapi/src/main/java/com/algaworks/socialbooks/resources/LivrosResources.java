@@ -44,6 +44,12 @@ public class LivrosResources {
 
         return ResponseEntity.status(HttpStatus.OK).cacheControl(cacheControl).body(livro);
     }
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> atualizar(@RequestBody Livro livro, @PathVariable Long id) {
+        livro.setId(id);
+        livrosService.atualizar(livro);
+        return ResponseEntity.noContent().build();
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
@@ -51,12 +57,8 @@ public class LivrosResources {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> atualizar(@RequestBody Livro livro, @PathVariable Long id) {
-        livro.setId(id);
-        livrosService.atualizar(livro);
-        return ResponseEntity.noContent().build();
-    }
+
+    //Comentarios
 
     @RequestMapping(value = "/{id}/comentarios", method = RequestMethod.POST)
     public ResponseEntity<Void> adicionarComentario(@PathVariable("id") Long livroId, @RequestBody Comentario comentario){
